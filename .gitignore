@@ -1,5 +1,5 @@
 # yii console command
-/yii
+#/yii
 
 # phpstorm project files
 .idea
@@ -16,7 +16,7 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-_protected/vendor
+#_protected/vendor
 
 # composer itself is not needed
 composer.phar
@@ -30,4 +30,4 @@ phpunit.phar
 /phpunit.xml
 
 # runtime dir
-_protected/runtime
+#_protected/runtime
