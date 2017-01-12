@@ -59,7 +59,7 @@ $config = [
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                      'class' => 'Swift_SmtpTransport',
-                     'host' => '10.14.0.172',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
+                     'host' => '10.41.0.172',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
                      'username' => 'chsscanner',
                      'password' => 'JeldWen2015',
                      'port' => '587', // Port 25 is a very common port too (587)
@@ -99,7 +99,10 @@ $config = [
 
 if (YII_ENV_DEV) {
     //echo '<pre>', var_dump($config);
-    $config['components']['db'] = require(__DIR__ . '/db_dev.php');
+    if ($_SERVER['REMOTE_ADDR'] == '10.41.4.151') {
+        $config['components']['db'] = require(__DIR__ . '/db_dev.php');    
+    }
+
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
