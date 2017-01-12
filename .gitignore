@@ -30,4 +30,4 @@ phpunit.phar
 /phpunit.xml
 
 # runtime dir
-#_protected/runtime
+_protected/runtime

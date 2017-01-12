@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="col-md-5 well bs-component">
 
-        <p><?= Yii::t('app', 'Please fill out the following fields to login:') ?></p>
+        <p><?= Yii::t('app', 'Bitte die folgenden Felder befüllen:') ?></p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
@@ -23,21 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if ($model->scenario === 'lwe'): ?>
 
             <?= $form->field($model, 'email')->input('email', 
-                ['placeholder' => Yii::t('app', 'Enter your e-mail'), 'autofocus' => true]) ?>
+                ['placeholder' => Yii::t('app', 'Bitte geben Sie ihren E-mail an'), 'autofocus' => true]) ?>
 
         <?php else: ?>
 
             <?= $form->field($model, 'username')->textInput(
-                ['placeholder' => Yii::t('app', 'Enter your username'), 'autofocus' => true]) ?>
+                ['placeholder' => Yii::t('app', 'Bitte geben Sie ihren Benutzernamen an'), 'autofocus' => true])->label(Yii::t('app', 'Benutzername'), ['class'=>'label-class']) ?>
 
         <?php endif ?>
 
-        <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app', 'Enter your password')]) ?>
+        <?= $form->field($model, 'password')->passwordInput(['placeholder' => Yii::t('app', 'Bitte geben Sie ihren Kennwort an')])->label(Yii::t('app', 'Kennwort'), ['class'=>'label-class'])  ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox() ?>
+        <?= $form->field($model, 'rememberMe')->checkbox()->label(Yii::t('app', 'Daten speichern'), ['class'=>'label-class']) ?>
 
         <div style="color:#999;margin:1em 0">
-            <?= Yii::t('app', 'If you forgot your password you can') ?>
+            <?= Yii::t('app', 'Hast du dein Kennwort vergessen?') ?>
             <?= Html::a(Yii::t('app', 'reset it'), ['site/request-password-reset']) ?>.
         </div>
 

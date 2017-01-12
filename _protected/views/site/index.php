@@ -6,7 +6,7 @@ $this->title = Yii::t('app', Yii::$app->name);
 ?>
 <div class="site-index">
 
-    <div class="jumbotron" style="height: 70vh;">
+    <div class="jumbotron" style="height: 100vh;">
         <h1></h1>
 
         <p class="lead"></p>
