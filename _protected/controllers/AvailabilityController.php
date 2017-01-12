@@ -65,8 +65,6 @@ class AvailabilityController extends Controller
     {
         $model = new Availability();
         $searchModel = new AvailabilitySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->where('work_centre_id = '.Yii::$app->user->identity->work_centre_id);
 
         if ($model->load(Yii::$app->request->post())) {
 

@@ -45,11 +45,11 @@ return [
      * Email used in contact form.
      * Users will send you emails to this address.
      */
-    'adminEmail' => 'admin@example.com', 
+    'adminEmail' => 'chsscanner@jeldwen.com', 
 
     /**
      * Email used in sign up form, when we are sending email with account activation link.
      * You will send emails to users from this address.
      */
-    'supportEmail' => 'support@example.com',
+    'supportEmail' => 'chsscanner@jeldwen.com',
 ];

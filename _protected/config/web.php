@@ -42,6 +42,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\UserIdentity',
             'enableAutoLogin' => true,
+            'authTimeout' => false,
         ],
         'session' => [
             'class' => 'yii\web\Session',
@@ -56,9 +57,17 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. 
-            // You have to set 'useFileTransport' to false and configure a transport for the mailer to send real emails.
-            'useFileTransport' => true,
+            'transport' => [
+                     'class' => 'Swift_SmtpTransport',
+                     'host' => '10.14.0.172',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
+                     'username' => 'chsscanner',
+                     'password' => 'JeldWen2015',
+                     'port' => '587', // Port 25 is a very common port too (587)
+                     'encryption' => 'tls', // It is often used, check your provider or mail server             
+                     ],
+                // send all mails to a file by default. 
+                // You have to set 'useFileTransport' to false and configure a transport for the mailer to send real emails.
+                'useFileTransport' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -89,6 +98,8 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
+    //echo '<pre>', var_dump($config);
+    $config['components']['db'] = require(__DIR__ . '/db_dev.php');
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

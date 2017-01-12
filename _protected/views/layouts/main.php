@@ -31,6 +31,7 @@ AppAsset::register($this);
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-top',
+
         ],
     ]);
 
@@ -51,10 +52,15 @@ AppAsset::register($this);
     // display Logout to logged in users
     if (!Yii::$app->user->isGuest) {
         $menuItems[] = [
+            'label' => Yii::t('app', 'Störungen'), 
+            'url' => ['/availability/index']
+        ];        
+        $menuItems[] = [
             'label' => Yii::t('app', 'Abmelden'). ' (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']
         ];
+
     }
 
     // display Signup and Login pages to guests of the site

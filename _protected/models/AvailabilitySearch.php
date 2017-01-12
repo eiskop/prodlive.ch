@@ -18,8 +18,9 @@ class AvailabilitySearch extends Availability
     public function rules()
     {
         return [
-            [['id', 'start_time', 'end_time', 'duration_sec', 'created_at', 'updated_at'], 'integer'],
-            [['fault_code_id', 'work_centre_id', 'created_by',  'updated_by'], 'string'],
+            [['id', 'duration_sec'], 'integer'],
+            [['start_time', 'end_time', 'created_by',  'updated_by'], 'string'],
+            [['fault_code_id', 'work_centre_id', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -62,14 +63,14 @@ class AvailabilitySearch extends Availability
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
+            //'start_time' => $this->start_time,
+            //'end_time' => $this->end_time,
             'duration_sec' => $this->duration_sec,
             //'fault_code_id' => $this->fault_code_id,
             //'work_centre_id' => $this->work_centre_id,
-            'created_at' => $this->created_at,
+            //'created_at' => $this->created_at,
             //'created_by' => $this->created_by,
-            'updated_at' => $this->updated_at,
+            //'updated_at' => $this->updated_at,
         ]);
         $query->andFilterWhere(['like', 'user.username', $this->created_by])
             ->andFilterWhere(['like', 'user.username', $this->updated_by])

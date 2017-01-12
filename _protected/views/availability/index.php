@@ -41,7 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'start_time:datetime',
             'end_time:datetime',
-            'duration_sec',
+      //      'duration_sec',
+            [
+                'attribute'=>'duration_sec',
+                'label' => 'Dauer Min',
+                'filter' => false,
+                'value'=>function($data) {
+                    return round($data->duration_sec/10);
+                },
+                'contentOptions' => ['style' => 'text-align: right;'],                
+            ],
             'created_at:datetime',
             [
                 'attribute'=>'created_by',

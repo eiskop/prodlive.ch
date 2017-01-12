@@ -24,7 +24,7 @@ use yii\widgets\Pjax;
 $searchModel = new AvailabilitySearch();
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 $dataProvider->query->where(['availability.work_centre_id' => Yii::$app->user->identity->work_centre_id])->andWhere(['DATE( FROM_UNIXTIME( start_time ) )' => date('Y-m-d', time())])->orderBy(['id'=>SORT_DESC]);
-
+$dataProvider->sort->sortParam = false;
 $connection = Yii::$app->getDb();
 $command = $connection->createCommand('
     SELECT SUM( duration_sec ) AS duration_sec
@@ -116,7 +116,7 @@ if ($res != FALSE) {
                             Pjax::begin();
                             echo GridView::widget([
                                     'dataProvider' => $dataProvider,
-                                    'filterModel' => $searchModel,
+                                  //  'filterModel' => $searchModel,
                                     'formatter' => [
                                            'class' => 'yii\i18n\Formatter',
                                            'dateFormat' => 'php:d.m.Y',
