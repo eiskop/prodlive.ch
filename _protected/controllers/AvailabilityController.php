@@ -63,31 +63,38 @@ class AvailabilityController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Availability();
-        $searchModel = new AvailabilitySearch();
+        
+        if (Yii::$app->user->can('availability-create')) 
+            {
 
-        if ($model->load(Yii::$app->request->post())) {
 
-            //echo '<pre>', var_dump(Yii::$app->request->post());
-            //echo '<pre>', var_dump($model->start_time);
-            $model->start_time = strtotime(date('Y-m-d', time()).' '.$model->start_time.':00');    
-            $model->end_time = strtotime(date('Y-m-d', time()).' '.$model->end_time.':00');    
-            $model->duration_sec = $model->end_time-$model->start_time;
+            if ($model->load(Yii::$app->request->post())) {
 
-             
-            //echo '<pre>', var_dump($model->start_time);
-            $model->work_centre_id = Yii::$app->user->identity->work_centre_id;
-            
-            $model->created_at = time();
-            $model->created_by = Yii::$app->user->id;
+                //echo '<pre>', var_dump(Yii::$app->request->post());
+                //echo '<pre>', var_dump($model->start_time);
+                $model->start_time = strtotime(date('Y-m-d', time()).' '.$model->start_time.':00');    
+                $model->end_time = strtotime(date('Y-m-d', time()).' '.$model->end_time.':00');    
+                $model->duration_sec = $model->end_time-$model->start_time;
 
-            $model->save();
-            return $this->redirect(['create']);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+                 
+                //echo '<pre>', var_dump($model->start_time);
+                $model->work_centre_id = Yii::$app->user->identity->work_centre_id;
+                
+                $model->created_at = time();
+                $model->created_by = Yii::$app->user->id;
+
+                $model->save();
+                return $this->redirect(['create']);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else 
+        {
+            throw new ForbiddenHttpException;
+        }        
     }
 
     /**

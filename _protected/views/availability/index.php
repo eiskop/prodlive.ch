@@ -1,6 +1,8 @@
 <?php
 
+use app\rbac\models\AuthItem;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -18,6 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Störung melden'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+        <?php foreach (AuthItem::getRoles() as $item_name): ?>
+            <?php $roles[$item_name->name] = $item_name->name ?>
+        <?php endforeach   ?>
+        <?= '<pre>', var_dump(AuthItem::getRoles()) ?>
+<?php
+
+    echo '<pre>', var_dump(Yii::$app->user->can('admin'));
+?>
+
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -47,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Dauer Min',
                 'filter' => false,
                 'value'=>function($data) {
-                    return round($data->duration_sec/10);
+                    return round($data->duration_sec/60);
                 },
                 'contentOptions' => ['style' => 'text-align: right;'],                
             ],
@@ -61,9 +73,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'updated_by',
                 'value'=>'updatedBy.username',
             ],
-            
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => "Menu",
+            'contentOptions' => ['style' => 'width:50px;'],
+            'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('', $url, ['title'=>'View', 'class'=>'glyphicon glyphicon-eye-open']);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        if (Yii::$app->user->can('availability-update')) {
+                            return Html::a('', $url, ['title'=>'Update', 'class'=>'glyphicon glyphicon-pencil']);    
+                        }
+                        
+                    },
+                    'delete' => function ($url, $model, $key) {
+                        if (Yii::$app->user->can('availability-delete')) {
+                            return Html::a('', $url, 
+                            ['title'=>'Delete', 
+                                'class'=>'glyphicon glyphicon-trash',
+                                'data' => [
+                                    'confirm' => Yii::t('app', 'Bist du sicher dass du diesen Störung löschen willst?'),
+                                    'method' => 'post']
+                            ]);
+                        }
+                    }
+                ]
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ], // ActionColumn
+
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

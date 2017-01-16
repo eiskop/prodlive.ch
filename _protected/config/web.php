@@ -99,11 +99,7 @@ $config = [
 
 if (YII_ENV_DEV) {
     //echo '<pre>', var_dump($_SERVER);
-
-    if ($_SERVER['REMOTE_ADDR'] == '10.41.4.151') {
-        $config['components']['db'] = require(__DIR__ . '/db_dev.php');    
-    }
-
+//   $config['components']['db'] = require(__DIR__ . '/db_dev.php');    
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
