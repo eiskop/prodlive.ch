@@ -114,7 +114,9 @@ if ($res != FALSE) {
                             echo '<h3>Störungen heute: '.round($total_standstill_sec/60).' min</h3><p>';
 
                             Pjax::begin();
-                            echo GridView::widget([
+                            echo GridView::widget(
+
+                                [
                                     'dataProvider' => $dataProvider,
                                   //  'filterModel' => $searchModel,
                                     'formatter' => [
@@ -150,7 +152,8 @@ if ($res != FALSE) {
                                             'value'=>function($data) {
                                                 return round($data->duration_sec/60);
                                             },
-                                            'contentOptions' => ['style' => 'text-align: right;'],    
+                                            'contentOptions' => ['style' => 'text-align: right;'],
+                                        ],   
                                         [
                                             'attribute'=>'created_at',
                                             'value' => 'created_at',
@@ -161,7 +164,9 @@ if ($res != FALSE) {
                                             'attribute'=>'created_by',
                                             'value'=>'createdBy.username',
                                         ],
-                                        ['class' => 'yii\grid\ActionColumn'],
+                                        [
+                                            'class' => 'yii\grid\ActionColumn'
+                                        ],
                                     ],
                                 ]);
                             Pjax::end();

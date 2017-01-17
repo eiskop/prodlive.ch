@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach (AuthItem::getRoles() as $item_name): ?>
             <?php $roles[$item_name->name] = $item_name->name ?>
         <?php endforeach   ?>
-        <?= '<pre>', var_dump(AuthItem::getRoles()) ?>
+        
 <?php
     
   //  echo '<pre>', var_dump(Yii::$app->user->can('admin'));
