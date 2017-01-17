@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endforeach   ?>
         <?= '<pre>', var_dump(AuthItem::getRoles()) ?>
 <?php
-
+    
     echo '<pre>', var_dump(Yii::$app->user->can('admin'));
 ?>
 
@@ -83,13 +83,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('', $url, ['title'=>'View', 'class'=>'glyphicon glyphicon-eye-open']);
                     },
                     'update' => function ($url, $model, $key) {
-                        if (Yii::$app->user->can('availability-update')) {
+                       // if (Yii::$app->user->can('availability-update')) {
                             return Html::a('', $url, ['title'=>'Update', 'class'=>'glyphicon glyphicon-pencil']);    
-                        }
+                        //}
                         
                     },
                     'delete' => function ($url, $model, $key) {
-                        if (Yii::$app->user->can('availability-delete')) {
+                        //if (Yii::$app->user->can('availability-delete')) {
                             return Html::a('', $url, 
                             ['title'=>'Delete', 
                                 'class'=>'glyphicon glyphicon-trash',
@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'confirm' => Yii::t('app', 'Bist du sicher dass du diesen Störung löschen willst?'),
                                     'method' => 'post']
                             ]);
-                        }
+                        //}
                     }
                 ]
 

@@ -145,10 +145,12 @@ if ($res != FALSE) {
                                         ],
                                         [
                                             'attribute'=>'duration_sec',
-                                            'value' => 'duration_sec',
-                                            'format' => 'integer',
-                                            'contentOptions' => ['style' => 'text-align: right;'],
-                                        ],
+                                            'label' => 'Dauer Min',
+                                            'filter' => false,
+                                            'value'=>function($data) {
+                                                return round($data->duration_sec/60);
+                                            },
+                                            'contentOptions' => ['style' => 'text-align: right;'],    
                                         [
                                             'attribute'=>'created_at',
                                             'value' => 'created_at',
