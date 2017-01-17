@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= '<pre>', var_dump(AuthItem::getRoles()) ?>
 <?php
     
-    echo '<pre>', var_dump(Yii::$app->user->can('admin'));
+  //  echo '<pre>', var_dump(Yii::$app->user->can('admin'));
 ?>
 
 <?php Pjax::begin(); ?>    <?= GridView::widget([
