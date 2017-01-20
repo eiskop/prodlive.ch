@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                'dateFormat' => 'php:d.m.Y',
                'datetimeFormat' => 'php:d.m.Y H:i:s',
                'timeFormat' => 'H:i:s', 
+               'nullDisplay' => '',
         ],        
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],

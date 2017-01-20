@@ -48,16 +48,7 @@ if ($res != FALSE) {
     <?php $form = ActiveForm::begin(); ?>
     <div class="table">
         <div class="row">
-            <div class="col-md-2" style="margin-bottom:1vh;">
 
-                <?php 
-                    if ($_GET['r'] == 'availability/create') {
-                        echo Html::a(Yii::t('app', 'Zeit<br>erneuern'), ['availability/create'], ['class' => 'btn btn-success btn', 'style'=>'font-size: 1.9em;']);
-                    }
-                    
-                ?>
-
-            </div>
             <div class="col-md-2">
                <?= $form->field($model, 'start_time')->widget(TimePicker::className(),  
                      [
@@ -101,9 +92,21 @@ if ($res != FALSE) {
             </div>
                 <div class="col-md-2 v-col">
                     <div class="form-group" style="vetrtical-align: bottom;">
-                        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Melden') : Yii::t('app', 'Ändern'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary btn-lg', 'style'=>'font-size: 3.5em;']) ?>
+                        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Melden') : Yii::t('app', 'Ändern'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary btn-lg', 'style'=>'font-size: 2.5em; margin-top:2.5vh;']) ?>
                     </div>
                 </div>             
+        </div>
+        <div class="row">
+            <div class="col-md-2" style="margin-bottom:1vh;">
+
+                <?php 
+                    if ($_GET['r'] == 'availability/create') {
+                        echo Html::a(Yii::t('app', 'Zeit erneuern'), ['availability/create'], ['class' => 'btn btn-success btn', 'style'=>'font-size: 1.9em;']);
+                    }
+                    
+                ?>
+
+            </div>        
         </div>
         <div class="row">
             <div class="col-md-10">
@@ -120,10 +123,11 @@ if ($res != FALSE) {
                                     'dataProvider' => $dataProvider,
                                   //  'filterModel' => $searchModel,
                                     'formatter' => [
-                                           'class' => 'yii\i18n\Formatter',
-                                           'dateFormat' => 'php:d.m.Y',
-                                           'datetimeFormat' => 'php:d.m.Y H:i:s',
-                                           'timeFormat' => 'H:i', 
+                                       'class' => 'yii\i18n\Formatter',
+                                       'dateFormat' => 'php:d.m.Y',
+                                       'datetimeFormat' => 'php:d.m.Y H:i:s',
+                                       'timeFormat' => 'H:i', 
+                                       'nullDisplay' => '',
                                     ],        
                                     'columns' => [
                                         ['class' => 'yii\grid\SerialColumn'],
