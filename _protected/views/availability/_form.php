@@ -48,7 +48,6 @@ if ($res != FALSE) {
     <?php $form = ActiveForm::begin(); ?>
     <div class="table">
         <div class="row">
-
             <div class="col-md-2">
                <?= $form->field($model, 'start_time')->widget(TimePicker::className(),  
                      [
@@ -97,7 +96,7 @@ if ($res != FALSE) {
                 </div>             
         </div>
         <div class="row">
-            <div class="col-md-2" style="margin-bottom:1vh;">
+            <div class="col-md-12" style="margin-bottom:1vh;">
 
                 <?php 
                     if ($_GET['r'] == 'availability/create') {

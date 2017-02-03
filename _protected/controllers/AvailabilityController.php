@@ -45,6 +45,22 @@ class AvailabilityController extends Controller
     }
 
     /**
+     * Lists all Availability models.
+     * @return mixed
+     */
+    public function actionIndexExport()
+    {
+        $searchModel = new AvailabilitySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index_export', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    /**
      * Displays a single Availability model.
      * @param integer $id
      * @return mixed
