@@ -65,14 +65,24 @@ foreach ($rows as $k => $v) {
         echo '</tr>';
         echo '<tr>';
         foreach ($rows[$k] as $title=>$va) {
-            echo '<td>'.$va.'</td>';
+            if (is_numeric($va)) {
+                echo '<td style="text-align: right;">'.$va.'</td>';
+            }
+            else {
+                echo '<td>'.$va.'</td>';
+            }
         }        
         echo '</tr>';
     }
     else {
         echo '<tr>';
         foreach ($rows[$k] as $title=>$va) {
-            echo '<td>'.$va.'</td>';
+            if (is_numeric($va)) {
+                echo '<td style="text-align: right;">'.$va.'</td>';
+            }
+            else {
+                echo '<td>'.$va.'</td>';
+            }
         }
         echo '</tr>';
     }
