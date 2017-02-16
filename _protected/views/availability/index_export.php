@@ -28,7 +28,7 @@ $db = new yii\db\Connection([
 ]);
 date_default_timezone_set('Europe/Zurich');
 
-$posts = $db->createCommand("SELECT availability.id, FROM_UNIXTIME(start_time, '%d.%m.%Y') as 'Start Datum',  FROM_UNIXTIME(start_time, '%d.%m.%Y %h:%i') as Start, FROM_UNIXTIME(end_time, '%d.%m.%Y %h:%i') as Ende, (duration_sec) as 'Dauer(sek)', format(duration_sec/60, 0) as 'Dauer(min)', Format(duration_sec/60/60, 2) as 'Dauer(h)', fault_code.name as Störungsbeschreibung, fault_code_group.name as Störungsgruppe, work_centre.name as Arbeitstation FROM `availability`
+$posts = $db->createCommand("SELECT availability.id, FROM_UNIXTIME(start_time, '%Y-%W') as 'J-W', FROM_UNIXTIME(start_time, '%d.%m.%Y') as 'Start Datum',  FROM_UNIXTIME(start_time, '%d.%m.%Y %h:%i') as Start, FROM_UNIXTIME(end_time, '%d.%m.%Y %h:%i') as Ende, (duration_sec) as 'Dauer(sek)', format(duration_sec/60, 0) as 'Dauer(min)', Format(duration_sec/60/60, 2) as 'Dauer(h)', fault_code.name as Störungsbeschreibung, fault_code_group.name as Störungsgruppe, work_centre.name as Arbeitstation FROM `availability`
     LEFT JOIN fault_code on availability.fault_code_id = fault_code.id
     LEFT JOIN fault_code_group on fault_code.fault_code_group_id = fault_code_group.id
     LEFT JOIN work_centre on availability.work_centre_id = work_centre.id
