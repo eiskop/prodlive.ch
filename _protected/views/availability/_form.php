@@ -32,6 +32,7 @@ $command = $connection->createCommand('
     WHERE  `start_time` 
     BETWEEN "'.strtotime(date('Y-m-d', time())).'" 
     AND "'.strtotime(date('Y-m-d', time()).' 23:59:59').'" AND DATE( FROM_UNIXTIME( start_time ) ) = DATE(NOW())
+    AND work_centre_id = "'.Yii::$app->user->identity->work_centre_id.'"
     GROUP BY DATE( FROM_UNIXTIME( start_time ) )');
 
 $res = $command->queryAll();
