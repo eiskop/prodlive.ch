@@ -80,7 +80,7 @@ if ($res != FALSE) {
                 ]); ?>
             </div>
             <div class="col-md-4">    
-                <?= $form->field($model, 'fault_code_id')->dropDownList(ArrayHelper::map(FaultCode::find()->where(['work_centre_id'=>Yii::$app->user->identity->work_centre_id])->orderBy(['name' => SORT_ASC])->all(), 'id', 'name'), [
+                <?= $form->field($model, 'fault_code_id')->dropDownList(ArrayHelper::map(FaultCode::find()->where(['work_centre_id'=>Yii::$app->user->identity->work_centre_id, 'active'=>1])->orderBy(['name' => SORT_ASC])->all(), 'id', 'name'), [
                     'prompt'=>' -> Auswählen <- ',
                     'style'=> 'height: 7vh; font-size:2em;',
                     'onchange'=>'
@@ -94,19 +94,22 @@ if ($res != FALSE) {
                     <div class="form-group" style="vetrtical-align: bottom;">
                         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Melden') : Yii::t('app', 'Ändern'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary btn-lg', 'style'=>'font-size: 2.5em; margin-top:2.5vh;']) ?>
                     </div>
-                </div>             
+                </div>                       
         </div>
         <div class="row">
-            <div class="col-md-12" style="margin-bottom:1vh;">
+            <div class="col-md-2" style="margin-bottom:1vh;">
 
                 <?php 
                     if ($_GET['r'] == 'availability/create') {
-                        echo Html::a(Yii::t('app', 'Zeit erneuern'), ['availability/create'], ['class' => 'btn btn-success btn', 'style'=>'font-size: 1.9em;']);
+                        echo Html::a(Yii::t('app', 'Zeit<br>erneuern'), ['availability/create'], ['class' => 'btn btn-success btn', 'style'=>'font-size: 1.9em;']);
                     }
                     
                 ?>
 
             </div>        
+            <div class="col-md-8">    
+                    <?= $form->field($model, 'comment')->textInput(['style'=> 'height: 7vh; font-size:2em;']); ?>  
+            </div>                  
         </div>
         <div class="row">
             <div class="col-md-10">
@@ -137,6 +140,10 @@ if ($res != FALSE) {
                                             'attribute'=>'fault_code_id',
                                             'value'=>'faultCode.name',
                                         ],
+                                        [
+                                            'attribute'=>'comment',
+                                            'value'=>'comment',
+                                        ],                                        
                                         [
                                             'attribute'=>'start_time',
                                             'value' => 'start_time',
