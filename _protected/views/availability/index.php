@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'start_time:datetime',
             'end_time:datetime',
-      //      'duration_sec',
+            'comment',
             [
                 'attribute'=>'duration_sec',
                 'label' => 'Dauer Min',
